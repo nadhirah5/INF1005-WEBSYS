@@ -1,0 +1,205 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Jan 10, 2023, 12:10:28 PM
+    Author     : jccasanas
+*/
+
+h2 {
+    text-decoration: underline;
+}
+
+.navbar-img {
+    border-radius: 50%;  /* make logo img rounder */
+    width: 50px;         /* make logo img smaller */
+}
+
+figcaption{
+    font-style: italic;
+    color: gray;
+    text-align: center;
+}
+
+figure {
+    display: inline-block; /*Makes the entire figure into a block of container */
+}
+
+footer {
+    border-top: double;
+    text-align: center;
+    font-style: italic;
+    font-size: 10px;
+}
+
+.img-thumbnail{
+  border-style: double;
+  color: black
+}
+
+.scroll_img {
+    border-style: double;
+    color: black;
+}
+
+.img-popup{
+    position: absolute;
+    border-radius: 5px;
+    padding:5px; 
+    background: gray;
+    z-index: 3;
+    top: 1000px;
+    left: 380px;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.4);
+    
+    
+/*    change the size of the popped-up image*/
+    width: 50%;
+    height: auto;
+}
+
+
+/*Menu header image*/
+
+.img-header{
+  border-style: double;
+  color: black
+}
+
+.menu_column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* Clearfix (clear floats) */
+.food_row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.menu_h2 {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+    padding-left: 60px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Add To Cart Button ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.container { 
+  height: 40px;
+  position: relative;
+  border: 3px solid black; 
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+    border: 3px solid black; 
+
+  
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End of Add To Cart Button ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+.header {
+    box-sizing: border-box
+}
+
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: 0.4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
