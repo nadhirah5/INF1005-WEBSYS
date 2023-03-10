@@ -43,49 +43,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="images/aki.jpg"><img src="images/aki_kon_small.png"></a>
-
-                        
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <!--collapse navbar-collapse-->
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home </a>
-                </li>
-                       
-                       <li class="nav-item">
-                        <a class="nav-link" href="#menu">Menu</a>
-                       </li>
-                       
-                       <li class="nav-item">
-                        <a class="nav-link" href="#cart">Cart</a>
-                       </li>
-                       
-                       <li class="nav-item active">
-                        <a class="nav-link" href="#">Profile<span class="sr-only">(current)</span></a>
-                       </li>
-                       
-                       
-                       <li class="nav-item">
-                        <a class="nav-link" href="#reserve">Reservation</a>
-                       </li>
-                       
-                       <li class="nav-item">
-                        <a class="nav-link" href="#help">Help</a>
-                       </li>
-                       
-                       <li class="nav-item">
-                        <a class="nav-link" href="about_us.html">About Us</a>
-                       </li>
-                    </ul>
-                </div>
-                
-                </nav>
+    <?php
+        include "nav.inc.php";
+    ?>
+      
 
       
 <!-- Sidebar -->
@@ -93,8 +54,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <h3 class="w3-red" style="border-radius: 15px 15px"><b>My Account</b></h3>
     <br>
     <a href="profile.html" class="w3-bar-item w3-button">Account Settings</a>
-    <a href="#" class="w3-bar-item w3-button"><b>Order History</b></a>
-  <a href="address_book.html" class="w3-bar-item w3-button">Address Book</a>
+    <a href="order_history.html" class="w3-bar-item w3-button">Order History</a>
+    <a href="#" class="w3-bar-item w3-button"><b>Address Book</b></a>
   <br><br>
   <img src="images/sidebar-bg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto; text-align: center;">
 </div>
@@ -110,23 +71,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
 <div class="w3-container">
-<h3>Your past orders:</h3>
+<h3>Your Addresses:</h3>
 
 <table class="profile-table">
   <tr>
-    <th>OrderID</th>
-    <th>Order</th>
+    <th>Address Name</th>
+    <th>Street Name</th>
+    <th>Postal Code</th>
   </tr>
   <tr>
      <!--sample data--> 
-    <td data-th="Order ID">345</td>
-    <td data-th="Order">burger1 combo</td>
+    <td data-th="Address Name">Home</td>
+    <td data-th="Street Name">Ang Mo Kio</td>
+    <td data-th="Postal Code">123456</td>
   </tr>
 
 </table>
+
+<p> add form to let users add and remove addresses </p>
 </div>
 
 </div>
+
+    <?php
+        include "footer.inc.php";
+    ?>
 
     
 </body>
+
