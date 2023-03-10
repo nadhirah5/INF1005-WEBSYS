@@ -53,8 +53,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <h3 class="w3-red" style="border-radius: 15px 15px"><b>My Account</b></h3>
     <br>
     <a href="#" class="w3-bar-item w3-button"><b>Account Settings</b></a>
-  <a href="order_history.html" class="w3-bar-item w3-button">Order History</a>
-  <a href="address_book.html" class="w3-bar-item w3-button">Address Book</a>
+  <a href="order_history.php" class="w3-bar-item w3-button">Order History</a>
+  <a href="address_book.php" class="w3-bar-item w3-button">Address Book</a>
   <br><br>
   <img src="images/sidebar-bg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto; text-align: center;">
 </div>

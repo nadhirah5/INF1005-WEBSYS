@@ -50,9 +50,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;">
     <h3 class="w3-red" style="border-radius: 15px 15px"><b>My Account</b></h3>
     <br>
-    <a href="profile.html" class="w3-bar-item w3-button">Account Settings</a>
+    <a href="profile.php" class="w3-bar-item w3-button">Account Settings</a>
     <a href="#" class="w3-bar-item w3-button"><b>Order History</b></a>
-  <a href="address_book.html" class="w3-bar-item w3-button">Address Book</a>
+  <a href="address_book.php" class="w3-bar-item w3-button">Address Book</a>
   <br><br>
   <img src="images/sidebar-bg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto; text-align: center;">
 </div>
