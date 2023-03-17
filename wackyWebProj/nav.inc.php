@@ -11,7 +11,7 @@
         <a href="#about">about us</a> 
         <!--under about section, will link to, learn more about us-->
 
-        <a href="#menu">menu</a>
+        <a href="menu.php">menu</a>
         <!--<a href="#review">review</a>-->
         <a href="#order">Reservation</a>
         <a href="aboutus.html">more</a>
