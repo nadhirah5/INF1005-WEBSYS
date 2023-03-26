@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/vmenunew.php</file>
+            <file>file:/D:/School/Y1S2/1005/HTMLProject/process_addtocart.php</file>
+            <file>file:/D:/School/Y1S2/1005/HTMLProject/nav.inc.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/forgetpassword_reset.php</file>
+            <file>file:/D:/School/Y1S2/1005/HTMLProject/process_MenuMenu.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/process_profileFetch.php</file>
+            <file>file:/D:/School/Y1S2/1005/HTMLProject/menu2.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/process_forgetpassword_reset_validate.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/process_forgetpassword_reset_change.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/forgetpassword.php</file>
@@ -14,9 +18,8 @@
             <file>file:/D:/School/Y1S2/1005/HTMLProject/process_profileUpdate.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/aboutus.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/index.php</file>
-            <file>file:/D:/School/Y1S2/1005/HTMLProject/process_login.php</file>
-            <file>file:/D:/School/Y1S2/1005/HTMLProject/cart.php</file>
             <file>file:/D:/School/Y1S2/1005/HTMLProject/menu.php</file>
+            <file>file:/D:/School/Y1S2/1005/HTMLProject/cart.php</file>
         </group>
     </open-files>
 </project-private>
