@@ -63,7 +63,7 @@
 
     $foodName = $_POST['desertName'];
     $foodPrice = $_POST['desertPrice'];
-    $desertQuantity = $_POST['desertQuantity'];
+    $desertQuantity = filter_var($_POST['desertQuantity'],FILTER_SANITIZE_NUMBER_INT);
     
     $request = "None";
 
