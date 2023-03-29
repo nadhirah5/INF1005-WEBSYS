@@ -64,10 +64,11 @@
 
     $foodName = $_POST['foodName'];
     $foodPrice = $_POST['foodPrice'];
-    $foodQuantity = $_POST['foodQuantity'];
-    $quantityPickles = $_POST['quantityPickles'];
-    $quantityTomatoes = $_POST['quantityTomatoes'];
-    $quantityOnions = $_POST['quantityOnions'];
+    // Sanitize input data
+    $foodQuantity = filter_var($_POST['foodQuantity'], FILTER_SANITIZE_NUMBER_INT);
+    $quantityPickles = filter_var($_POST['quantityPickles'], FILTER_SANITIZE_NUMBER_INT);
+    $quantityTomatoes = filter_var($_POST['quantityTomatoes'], FILTER_SANITIZE_NUMBER_INT);
+    $quantityOnions = filter_var($_POST['quantityOnions'], FILTER_SANITIZE_NUMBER_INT);
     
     $request = "Pickle:".$quantityPickles."\nTomato:".$quantityTomatoes."\nOnion:".$quantityOnions;
 
