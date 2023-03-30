@@ -57,7 +57,7 @@
             fetchAddresses();
 
             function fetchCustomerID() {
-                global $customerID, $dbemail, $errorMsg, $success;
+                global $customerID, $address,$postalcode,$dbemail, $errorMsg, $success;
                 // Create database connection.
                 $config = parse_ini_file('../../private/db-config.ini');
                 $conn = new mysqli($config['servername'], $config['username'],
@@ -68,7 +68,7 @@
                     $success = false;
                 } else {
                     // Prepare the statement:
-                    $stmt = $conn->prepare("SELECT customerID FROM customers WHERE email=?");
+                    $stmt = $conn->prepare("SELECT customerID,address,postalcode FROM customers WHERE email=?");
                     // Bind & execute the query statement:
                     $stmt->bind_param("s", $dbemail);
                     $stmt->execute();
@@ -78,6 +78,8 @@
                     // one row in the result set.
                         $row = $result->fetch_assoc();
                         $customerID = $row["customerID"];
+                        $postalcode = $row["postalcode"];
+                        $address = $row["address"];
                         $stmt->close();
                     }
                     $conn->close();
@@ -143,9 +145,9 @@
                 }
             }
             
-            if (isset($_POST['addAddress-form'])) {
+            if (isset($_POST['addaddress'])) {
                 addNewAddress();
-//                fetchAddresses();
+//                
             }
             
             
@@ -176,6 +178,41 @@
                 header("Location: http://35.212.156.153/HTMLProject/address_book.php");
                 exit();
                 }
+            }
+            
+            function updateAddress(){
+                global $errorMsg, $success;
+                // Create database connection
+                $config = parse_ini_file('../../private/db-config.ini');
+                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    $errorMsg = "Connection failed: " . $conn->connect_error;
+                    $success = false;
+                } else {
+                    
+                    $customerID = $_POST['customerID'];
+                $customerAddressStreet = $_POST['customeraddress'];
+                $customerAddressPostalCode = $_POST['customerpostal'];
+   
+              
+                // Delete the address from the customerAddress database
+                $stmt = $conn->prepare("UPDATE customers SET address = ?, postalcode= ? WHERE customerID = ?");
+                // Bind & execute the query statement:
+                $stmt->bind_param("ssi", $customerAddressStreet,$customerAddressPostalCode,$customerID);
+                $stmt->execute();
+
+                // Redirect the user to the page where the list of addresses is displayed
+                header("Location: http://35.212.156.153/HTMLProject/address_book.php");
+                exit();
+                }
+            }
+            
+            if (isset($_POST['setAddress'])){
+                
+                
+                updateAddress();           
             }
 
             
@@ -231,19 +268,35 @@
                     "<th>Street Name</th>" .
                     "<th>Postal Code</th>" .
                     "<th>Remove Address?</th>" .
+                    "<th>Set as Primary </th>".
                     "</tr>";
                     while ($row = $result->fetch_assoc()) {
 
-                        echo "<tr>" .
-                        "<td data-th='Name'>home</td>" .
-                        "<td data-th='Street Name'>" . $row["customerAddressStreet"] . "</td>" .
+                        echo "<tr>";
+                        if($address == $row["customerAddressStreet"] && $postalcode==$row["customerAddressPostalCode"])
+                        {
+                            echo "<td data-th='Name'>Primary</td>" ;
+                        }
+                        else
+                        {
+                            echo "<td data-th='Name'> </td>" ;
+                        }
+                        echo "<td data-th='Street Name'>" . $row["customerAddressStreet"] . "</td>" .
                         "<td data-th='Postal Code'>" . $row["customerAddressPostalCode"] . "</td>" .
                         "<td data-th='Remove Address'>" .
-                        "<form method='POST' id='deleteAddress-form>" .
+                        "<form method='POST' >" .
                         "<input type='hidden' name ='customerAddressID' value='" . $row["customerAddressID"] . "'>" .
                         "<button class='btn' type='submit' id='deleteAddress' name='deleteAddress'>Delete</button>" .
                         "</form>" .
                         "</td>" .
+                        "<td data-th='Set as primary'>" .
+                        "<form method='POST'>" .
+                        "<input type='hidden' name ='customerID' value='" . $row["customerID"] . "'>" .
+                        "<input type='hidden' name ='customeraddress' value='" . $row["customerAddressStreet"] . "'>" .
+                        "<input type='hidden' name ='customerpostal' value='" . $row["customerAddressPostalCode"] . "'>" .
+                        "<button class='btn' type='submit' id='setAddress' name='setAddress'>Set as Primary</button>" .
+                        "</form>" .
+                        "</td>" .        
                         "</tr>";
                     } echo "</table>";
                 } else {
@@ -286,13 +339,9 @@
                     </div>
                     
                     <!--set as primary address-->
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="pri_add" name="checkbox" value="delete_acc"> Set as primary address
-                        <label class="form-check-label" for="pri_add"></label>
-                    </div>
-
+                 
                     <div class='button-container2'>
-                        <input type="submit" value="Add Address" class="btn"> 
+                        <input type="submit" value="Add Address" class="btn" name="addaddress" id="addaddress"> 
                     </div>
 
                 </form>
