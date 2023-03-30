@@ -80,7 +80,7 @@ email=?");
             "<div class='inputBox'>".
             "<div class='input'>".
             "<span>your mobile number</span>".
-            "<input type='number' name='mobilenumber' id='mobilenumber' placeholder='88888888' value='". $row["mobilenumber"] ."'>".
+            "<input type='number' pattern='[0-9]{8}' name='mobilenumber' id='mobilenumber' placeholder='88888888' value='". $row["mobilenumber"] ."'>".
             "</div>".
             "</div>".
             "<div class='inputBox'>".

@@ -100,7 +100,7 @@
                     <div class="inputBox">
                         <div class="input">
                             <span>Mobile Number</span>
-                            <input type="number" name="mobileNumber" id="mobileNumber" placeholder="11111111">
+                            <input type="number" pattern="[0-9]{8}" name="mobileNumber" id="mobileNumber" placeholder="11111111">
                         </div>
                     </div>
                     

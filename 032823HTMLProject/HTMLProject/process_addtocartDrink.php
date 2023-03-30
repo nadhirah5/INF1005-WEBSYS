@@ -63,8 +63,10 @@
 
     $foodName = $_POST['drinkName'];
     $foodPrice = $_POST['drinkPrice'];
-    $drinkQuantity = $_POST['drinkQuantity'];
-    $IceQuantity = $_POST['IceQuantity'];
+    // sanitize user input
+    $drinkQuantity = filter_var($_POST['drinkQuantity'], FILTER_SANITIZE_NUMBER_INT);
+    $IceQuantity = filter_var($_POST['IceQuantity'], FILTER_SANITIZE_NUMBER_INT);
+
     
     $request = "Ice:". $IceQuantity;
 

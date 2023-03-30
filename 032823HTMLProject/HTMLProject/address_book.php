@@ -8,8 +8,6 @@
 
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-
-
         <!--    <link rel="stylesheet"
                     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
                     integrity=
@@ -21,13 +19,11 @@
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">-->
 
 
-
         <!-- font awesome cdn link  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
         <!-- custom css file link  -->
         <link rel="stylesheet" href="css/main.css">
-
 
         <!--    jQuery
                 <script defer
@@ -41,10 +37,6 @@
                 integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
                 crossorigin="anonymous">
                 </script>-->
-
-
-
-
 
 
     </head>
@@ -66,24 +58,24 @@
 
             function fetchCustomerID() {
                 global $customerID, $dbemail, $errorMsg, $success;
-// Create database connection.
+                // Create database connection.
                 $config = parse_ini_file('../../private/db-config.ini');
                 $conn = new mysqli($config['servername'], $config['username'],
                         $config['password'], $config['dbname']);
-// Check connection
+                // Check connection
                 if ($conn->connect_error) {
                     $errorMsg = "Connection failed: " . $conn->connect_error;
                     $success = false;
                 } else {
-// Prepare the statement:
+                    // Prepare the statement:
                     $stmt = $conn->prepare("SELECT customerID FROM customers WHERE email=?");
-// Bind & execute the query statement:
+                    // Bind & execute the query statement:
                     $stmt->bind_param("s", $dbemail);
                     $stmt->execute();
                     $result = $stmt->get_result();
                     if ($result->num_rows > 0) {
-// Note that email field is unique, so should only have
-// one row in the result set.
+                    // Note that email field is unique, so should only have
+                    // one row in the result set.
                         $row = $result->fetch_assoc();
                         $customerID = $row["customerID"];
                         $stmt->close();
@@ -92,33 +84,112 @@
                 }
             }
 
+            // get customers' stored addresses
             function fetchAddresses() {
                 global $customerID, $errorMsg, $success, $result;
-// Create database connection.
+                // Create database connection.
                 $config = parse_ini_file('../../private/db-config.ini');
                 $conn = new mysqli($config['servername'], $config['username'],
                         $config['password'], $config['dbname']);
-// Check connection
+                // Check connection
                 if ($conn->connect_error) {
                     $errorMsg = "Connection failed: " . $conn->connect_error;
                     $success = false;
                 } else {
-// Prepare the statement:
+                    // Prepare the statement:
                     $stmt = $conn->prepare("SELECT * FROM customerAddress WHERE customerID=?");
-// Bind & execute the query statement:
+                    // Bind & execute the query statement:
                     $stmt->bind_param("s", $customerID);
                     $stmt->execute();
                     $result = $stmt->get_result();
                 }
             }
+            
+            // function to insert new address into db 
+            function addNewAddress() {
+                global $customerID, $errorMsg, $success;
+
+
+                // Create database connection
+                $config = parse_ini_file('../../private/db-config.ini');
+                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    $errorMsg = "Connection failed: " . $conn->connect_error;
+                    $success = false;
+                } else {
+                    
+                    // Sanitize form inputs
+                     $customerAddressStreet = htmlspecialchars($_POST['street']);
+                     $customerAddressPostalCode = htmlspecialchars($_POST['postalcode']);
+                     
+                     
+                    // Prepare the statement
+                    $stmt = $conn->prepare("INSERT INTO customerAddress (customerID, customerAddressStreet, customerAddressPostalCode) VALUES (?, ?, ?)");
+
+                    // Bind & execute the query statement
+                    $stmt->bind_param("sss", $customerID, $customerAddressStreet, $customerAddressPostalCode);
+                    $stmt->execute();
+
+                    $stmt->close();
+                    $conn->close();
+
+                    $success = true;
+                    
+                    // Redirect the user to the page where the list of addresses is displayed
+                    header("Location: http://35.212.156.153/HTMLProject/address_book.php");
+                    exit();
+                }
+            }
+            
+            if (isset($_POST['addAddress-form'])) {
+                addNewAddress();
+//                fetchAddresses();
+            }
+            
+            
+            // function to delete address
+            function deleteAddress(){
+                global $errorMsg, $success;
+                // Create database connection
+                $config = parse_ini_file('../../private/db-config.ini');
+                $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    $errorMsg = "Connection failed: " . $conn->connect_error;
+                    $success = false;
+                } else {
+                
+                // get AddressID
+                $customerAddressID = $_POST['customerAddressID'];
+                
+
+                // Delete the address from the customerAddress database
+                $stmt = $conn->prepare("DELETE FROM customerAddress WHERE customerAddressID = ?");
+                // Bind & execute the query statement:
+                $stmt->bind_param("s", $customerAddressID);
+                $stmt->execute();
+
+                // Redirect the user to the page where the list of addresses is displayed
+                header("Location: http://35.212.156.153/HTMLProject/address_book.php");
+                exit();
+                }
+            }
+
+            
+            if (isset($_POST['deleteAddress-form'])){
+                deleteAddress();
+//                fetchAddresses();
+            }
+
             ?>
 
         </header>
 
         <!-- header section ends-->
-
-
-
+        
         <!-- account title section starts  -->
 
         <div class="container">
@@ -143,8 +214,6 @@
         </div>
 
 
-
-
         <!-- address table section starts  -->
 
         <div class="container">
@@ -154,14 +223,6 @@
 
 
                 <h1 class="sub-heading"> Address Book </h1>
-
-<!--                <table class="profile-table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Street Name</th>
-                        <th>Postal Code</th>
-                        <th>Remove Address?</th>
-                    </tr>-->
 
                 <?php
                 if ($result->num_rows > 0) {
@@ -179,9 +240,9 @@
                         "<td data-th='Street Name'>" . $row["customerAddressStreet"] . "</td>" .
                         "<td data-th='Postal Code'>" . $row["customerAddressPostalCode"] . "</td>" .
                         "<td data-th='Remove Address'>" .
-                        "<form method='POST'>" .
+                        "<form method='POST' id='deleteAddress-form>" .
                         "<input type='hidden' name ='customerAddressID' value='" . $row["customerAddressID"] . "'>" .
-                        "<button class='btn' type='submit' name='deleteAddress'>Delete</button>" .
+                        "<button class='btn' type='submit' id='deleteAddress' name='deleteAddress'>Delete</button>" .
                         "</form>" .
                         "</td>" .
                         "</tr>";
@@ -202,27 +263,33 @@
 
                 <h1 class="heading"> Add New Address </h1>
 
-                <form action="">
+                <form method="post" id="addAddress-form">
 
                     <div class="inputBox">
                         <div class="input">
                             <span>your address name</span>
-                            <input type="text" required placeholder="home, work or school?">
+                            <input type="text" name="addresstype" id="addresstype" required placeholder="home, work or school?">
                         </div>
                     </div>
 
                     <div class="inputBox">
                         <div class="input">
                             <span>your street name</span>
-                            <input type="text" required placeholder="enter your street name">
+                            <input type="text" name="street" id="street" required placeholder="enter your street name">
                         </div>
                     </div>
 
                     <div class="inputBox">
                         <div class="input">
                             <span>your postal code</span>
-                            <input type="text" required placeholder="enter your postal code">
+                            <input type="text" name="postalcode" id="postalcode" required placeholder="enter your postal code">
                         </div>
+                    </div>
+                    
+                    <!--set as primary address-->
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="pri_add" name="checkbox" value="delete_acc"> Set as primary address
+                        <label class="form-check-label" for="pri_add"></label>
                     </div>
 
                     <div class='button-container2'>
