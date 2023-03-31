@@ -123,7 +123,7 @@
                                     
                                    
   
-                                    <label><b>Number</b></label>
+                                    <label><b>Quantity</b></label>
                                     <div class="quantity" id="quantity">
                                         <button class="quantity-minus" onclick=decrementValueLimit("foodQuantity")>-</button>
                                         <input type="number" class="quantity-input" id="foodQuantity" name="foodQuantity" value="1" min="1">
