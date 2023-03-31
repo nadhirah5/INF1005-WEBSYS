@@ -35,8 +35,7 @@
         <link rel="stylesheet" href="css/main.css">
 
 
-        <!--    jQuery
-        -->     <script defer
+        <script defer
                         src="https://code.jquery.com/jquery-3.4.1.min.js"
                         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
                         crossorigin="anonymous">
@@ -57,7 +56,6 @@
                 color: black;
             }
             button{
-                /*margin-top: 1rem;*/
                 display: inline-block;
                 font-size: 1.7rem;
                 color: white;
@@ -66,29 +64,16 @@
                 cursor: pointer;
                 padding: 0.8rem 3rem;
             }
-/*            form
-            {
-                max-width: 300px;
-                text-align: center;
-            }*/
-            
             #pay-field
             {
                 font-size: 20px;
                 text-align: center;
                 justify-content: center;
                 align-items: center;
-                /*position: relative;*/
-                /*margin: 0 auto;*/
             }
             #paycontainer{
-                /*max-width: 500px;*/
-                /*position: absolute;*/
                 justify-content: center;
                 align-items: center;
-                
-                /*align-content: center;*/
-                /*text-align: center;*/
             }
             
 
@@ -110,10 +95,6 @@
         <div class="container" id="paycontainer">
             <section id="pay-field">
                 <form action="" id="transaction_form">
-                    <!--                <fieldset id="information">
-                                        <legend class="text-info">Payment Information</legend>
-                                    </fieldset>-->
-                    <!--<fieldset id="pay-field">-->
                         <h1 class="text-center text-info">Payment Information</h1>
                         <h1 class="text-center text-info" id="payable_amount"></h1>
                         <hr class="border-light">
@@ -143,7 +124,7 @@
                             return actions.order.create({
                                 purchase_units: [{
                                         amount: {
-                                            value: paytotal.toFixed(2).toString() // Replace with the amount you want to charge
+                                            value: paytotal.toFixed(2).toString() //The amount to charge the customer
                                         }
                                     }]
                             });
@@ -151,8 +132,6 @@
                         onApprove: function (data, actions) {
                             // Capture the payment when the customer approves the transaction
                             return actions.order.capture().then(function (details) {
-                                // Show a success message to the customer
-                                alert('Payment complete! Transaction ID: ' + details.id); //need change this to order history page
 
                                 $(document).ready(function () {
                                     $.ajax({
@@ -160,7 +139,7 @@
                                         type: "POST",
                                         data: {total: paytotal.toFixed(2)},
                                         success: function (result) {
-                                            $("#paycontainer").html(result);
+                                            $("#paycontainer").html(result); // Show a success message to the customer
                                         },
                                         error: function (xhr, status, error) {
                                             console.log("Error: " + error);
@@ -172,7 +151,6 @@
                     }).render('#paypal-button');
                             </script>
                         </div>
-                    <!--</fieldset>-->
                     <div class="form-group">
                         <div class="col-12">
                             <div class="d-flex justify-content-end align-items-center">
@@ -191,14 +169,9 @@
         include "footer.inc.php";
         ?>
 
-        <!-- footer section ends -->
-
-
-
 
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        <!-- custom js file link  -->
         <script src="js/main.js"></script>
 
     </body>
